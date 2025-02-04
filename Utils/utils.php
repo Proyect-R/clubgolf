@@ -1,17 +1,24 @@
 <?php
-
 namespace Utils;
-
+require_once __DIR__ . '/../vendor/autoload.php';
 use PDO;
 use PDOException;
-
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 class Utils
 {
 
-    public static $dsn = 'mysql:dbname=clubgolf;host=127.0.0.1';
-    public static $user = 'root';
-    public static $password = '';
+    public static $dsn;
+    public static $user;
+    public static $password;
 
+    public static function init()
+    {
+        self::$dsn = $_ENV['DSN'];
+        self::$user = $_ENV['DB_USERNAME'];
+        self::$password = $_ENV['DB_PASSWORD'];
+    }
     static function getConnection($dsn, $user, $password)
     {
         //Conexion a la BD

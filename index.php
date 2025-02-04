@@ -18,6 +18,8 @@ $dispatcher = FastRoute\simpleDispatcher(function (RouteCollector $r) {
 
     //rutas para CRUD
     $r->addRoute('GET', '/mostrar_clubs_view', ['Controlador\main_club_controller', 'listadoClubs']);
+    $r->addRoute('GET', '/mostrar_clubs_view/{idClubGolf:\d+}', ['Controlador\main_club_controller', 'eliminarClub']);
+    $r->addRoute('GET', '/listar_hoyos_view/{idClubGolf:\d+}', ['Controlador\cargar_hoyos_controller', 'eliminarClub']);
     
 });
 

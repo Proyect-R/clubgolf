@@ -22,7 +22,7 @@ class clubgolf_model
 
             //Ejecutamos la sentencia substituyendo las interrogacions por los valores
             //Que metemos dentro del array que le pasamos a execute
-            $resultado = $stmt->execute($id);
+            $resultado = $stmt->execute([$id]);
 
             if($resultado){
                 return 1;

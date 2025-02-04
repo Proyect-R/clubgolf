@@ -9,6 +9,7 @@ class main_club_controller
 {
     public function listadoClubs()
     {     
+        Utils::init();
         $con = Utils::getConnection(Utils::$dsn, Utils::$user, Utils::$password);
         // Creamos el modelo
         $clubM = new clubgolf_model();
@@ -21,5 +22,16 @@ class main_club_controller
 
         // Renderizamos la vista
         Utils::render('mostrar_clubs_view', $datos);
+    }
+    public function eliminarClub($datos)
+    {
+        //Nos conectamos a la bd
+        $con = Utils::getConnection(Utils::$dsn, Utils::$user, Utils::$password);
+        //Creamos el modelo
+        $clubs = new clubgolf_model($con);
+        //borramos el entrenador
+        $clubs->borrarClub($con, $datos['idClubGolf']);
+        //Cargamos la vista
+        Utils::redirect('/mostrar_clubs_view');
     }
 }
